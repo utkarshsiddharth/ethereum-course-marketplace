@@ -1,4 +1,4 @@
-import { Footer, Navbar } from "@components/common"
+import { Footer, Navbar } from "@components/UI/common"
 import React from "react"
 
 const BaseLayout = ({ children }) => {
