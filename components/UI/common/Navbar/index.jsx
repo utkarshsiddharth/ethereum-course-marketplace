@@ -1,20 +1,19 @@
 import React from "react"
 import Link from "next/link"
-import { useSelector } from "react-redux"
-import { useRouter } from "next/router"
-import useAccount from "@components/Providers/Web3/hooks/useAccount"
+import { useSelector, useDispatch } from "react-redux"
+import { connectMetamask } from "store/web3Actions"
 
 const Navbar = () => {
-  const { connect, isWeb3Loaded, isLoading, web3, hooks } = useSelector(
-    (state) => {
-      return state.web3Api
-    }
-  )
+  const { isWeb3Loaded, isLoading } = useSelector((state) => {
+    return state.web3Api
+  })
+  const dispatch = useDispatch()
 
-  const { account } = hooks?.useAccount()
-  console.log({ account })
+  const connect = () => {
+    console.log("connect")
+    dispatch(connectMetamask())
+  }
 
-  const router = useRouter()
   return (
     <section>
       <div className="relative pt-6 px-4 sm:px-6 lg:px-8">

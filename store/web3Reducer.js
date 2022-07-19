@@ -5,6 +5,7 @@ const initialState = {
   web3: null,
   contract: null,
   isLoading: true,
+  acccount: null,
 }
 
 export const web3Reducer = (state = initialState, action) => {
