@@ -14,6 +14,7 @@ export const LoadProvider = (data, id) => async (dispatch, state) => {
         web3,
         contract: null,
         isLoading: false,
+        isWeb3Loaded: web3 !== null,
       }
     } else {
       console.error("Please, install Metamask.")
@@ -24,6 +25,7 @@ export const LoadProvider = (data, id) => async (dispatch, state) => {
     }
   }
   const provider = await loadProvider()
+  console.log("dispached")
   dispatch({
     type: SET_PROVIDER,
     payload: provider,
@@ -45,7 +47,6 @@ export const connectMetamask = () => async (dispatch, getState) => {
     try {
       console.log({ provider })
       const account = await provider.request({ method: "eth_requestAccounts" })
-      console.log({ account })
       dispatch({
         type: CONNECT_METAMASK,
         payload: {

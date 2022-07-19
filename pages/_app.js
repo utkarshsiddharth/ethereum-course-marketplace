@@ -9,11 +9,7 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     dispatch(LoadProvider())
   }, [])
-  useEffect(() => {
-    if (!account) {
-      dispatch(connectMetamask())
-    }
-  }, [web3])
+
   return (
     <>
       <Provider store={store}>
