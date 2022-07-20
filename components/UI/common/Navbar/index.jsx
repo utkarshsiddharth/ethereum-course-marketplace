@@ -2,15 +2,20 @@ import React from "react"
 import Link from "next/link"
 import { useSelector, useDispatch } from "react-redux"
 import { connectMetamask } from "store/web3Actions"
+import { useAccount } from "@components/Providers"
 
 const Navbar = () => {
-  const { isWeb3Loaded, isLoading } = useSelector((state) => {
-    return state.web3Api
-  })
+  const { isWeb3Loaded, isLoading, getHooks, web3, provider } = useSelector(
+    (state) => {
+      return state.web3Api
+    }
+  )
+  const {
+    accountData: { data: account, isAdmin },
+  } = useAccount(web3, provider)
   const dispatch = useDispatch()
 
   const connect = () => {
-    console.log("connect")
     dispatch(connectMetamask())
   }
 
@@ -54,14 +59,25 @@ const Navbar = () => {
                   loading
                 </button>
               ) : isWeb3Loaded ? (
-                <button
-                  onClick={connect}
-                  className={`disabled:opacity-50 disabled:cursor-not-allowed font-medium mr-8 
+                account ? (
+                  <button
+                    disabled
+                    className={`disabled:opacity-90 disabled:cursor-not-allowed font-medium mr-8 
+                    rounded-md shadow-md cursor-pointer py-2 
+                    px-4 hover:text-gray-200 bg-indigo-700 text-gray-100  hover:bg-indigo-800`}
+                  >
+                    Hi there! {isAdmin && " Admin"}
+                  </button>
+                ) : (
+                  <button
+                    onClick={connect}
+                    className={`disabled:opacity-50 disabled:cursor-not-allowed font-medium mr-8 
                         rounded-md shadow-md cursor-pointer py-2 
                         px-4 hover:text-gray-200 bg-indigo-700 text-gray-100  hover:bg-indigo-800`}
-                >
-                  Connect
-                </button>
+                  >
+                    Connect
+                  </button>
+                )
               ) : (
                 <button
                   onClick={() => {
@@ -76,6 +92,17 @@ const Navbar = () => {
               )}
             </div>
           </div>
+          {account && (
+            <div className="flex justify-end pr-8 mt-2">
+              <div
+                className={`px-4 py-[2px] rounded-sm shadow-md ${
+                  isAdmin ? "bg-indigo-600" : "bg-gray-700"
+                } text-white`}
+              >
+                {account}
+              </div>
+            </div>
+          )}
         </nav>
       </div>
     </section>

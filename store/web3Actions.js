@@ -2,7 +2,6 @@ import detectEthereumProvider from "@metamask/detect-provider"
 import Web3 from "web3"
 import { useMemo } from "react"
 import { CONNECT_METAMASK, SET_PROVIDER } from "./types"
-import { setupHooks } from "@components/Providers/Web3/hooks/setupHooks"
 
 export const LoadProvider = (data, id) => async (dispatch, state) => {
   const loadProvider = async () => {
@@ -25,7 +24,6 @@ export const LoadProvider = (data, id) => async (dispatch, state) => {
     }
   }
   const provider = await loadProvider()
-  console.log("dispached")
   dispatch({
     type: SET_PROVIDER,
     payload: provider,
@@ -34,7 +32,7 @@ export const LoadProvider = (data, id) => async (dispatch, state) => {
 
 export const connectMetamask = () => async (dispatch, getState) => {
   const {
-    web3Api: { provider, isLoading, web3 },
+    web3Api: { provider, web3 },
   } = getState()
 
   if (!provider) {
@@ -45,18 +43,17 @@ export const connectMetamask = () => async (dispatch, getState) => {
 
   if (provider) {
     try {
-      console.log({ provider })
       const account = await provider.request({ method: "eth_requestAccounts" })
       dispatch({
         type: CONNECT_METAMASK,
         payload: {
           account,
           isWeb3Loaded: web3 != null,
-          getHooks: () => setupHooks(web3),
         },
       })
+      // window.location.reload()
     } catch (err) {
-      window.location.reload()
+      console.error(err)
     }
   }
 }
