@@ -2,7 +2,8 @@ import React from "react"
 import Link from "next/link"
 import { useSelector, useDispatch } from "react-redux"
 import { connectMetamask } from "store/web3Actions"
-import { useAccount } from "@components/Providers"
+import { useAccount } from "@components/hooks"
+import { useRouter } from "next/router"
 
 const Navbar = () => {
   const { isWeb3Loaded, isLoading, getHooks, web3, provider } = useSelector(
@@ -10,9 +11,11 @@ const Navbar = () => {
       return state.web3Api
     }
   )
+  const { pathname } = useRouter()
   const {
     accountData: { data: account, isAdmin },
   } = useAccount(web3, provider)
+
   const dispatch = useDispatch()
 
   const connect = () => {
@@ -20,7 +23,7 @@ const Navbar = () => {
   }
 
   return (
-    <section>
+    <section className="mb-4">
       <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
         <nav className="relative" aria-label="Global">
           <div className="flex justify-between">
@@ -30,7 +33,7 @@ const Navbar = () => {
                   Home
                 </a>
               </Link>
-              <Link href="/">
+              <Link href="/marketplace">
                 <a className="font-medium mr-8 text-gray-500 hover:text-gray-900">
                   Marketplace
                 </a>
@@ -92,7 +95,7 @@ const Navbar = () => {
               )}
             </div>
           </div>
-          {account && (
+          {account && !pathname.includes("/marketplace") && (
             <div className="flex justify-end pr-8 mt-2">
               <div
                 className={`px-4 py-[2px] rounded-sm shadow-md ${

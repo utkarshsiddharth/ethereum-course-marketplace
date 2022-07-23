@@ -1,12 +1,15 @@
 import React from "react"
-
-const WalletBar = () => {
+const WalletBar = ({
+  address,
+  network,
+  isSupported,
+  targetNetwork,
+  isLoading,
+}) => {
   return (
-    <section className="text-white bg-indigo-600">
+    <section className="text-white bg-indigo-600 mb-4 rounded-md drop-shadow-md">
       <div className="p-8">
-        <h1 className="text-2xl">
-          Hello, 0xd9D5cD41Fe921A743F2b5Fe71CC3070F5C176208
-        </h1>
+        <h1 className="text-2xl">Hello, {address}</h1>
         <h2 className="subtitle mb-5 text-xl">
           I hope you are having a great day!
         </h2>
@@ -22,9 +25,17 @@ const WalletBar = () => {
             </div>
           </div>
           <div>
+            {/* target network supported and has been initialized */}
+            {!isSupported && !isLoading && (
+              <div className="bg-red-400 p-4 rounded-lg">
+                <div>Connected to wrong network</div>
+                Connect to:
+                <strong className="text-2xl"> {targetNetwork}</strong>
+              </div>
+            )}
             <div>
               <span>Currently on </span>
-              <strong className="text-2xl">Ethereum Main Network</strong>
+              <strong className="text-2xl">{network}</strong>
             </div>
           </div>
         </div>
