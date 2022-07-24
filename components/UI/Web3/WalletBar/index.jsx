@@ -1,17 +1,13 @@
+import useMainHook from "@components/hooks/web3/useMainHook"
 import React from "react"
 import { useSelector } from "react-redux"
-const WalletBar = ({
-  address,
-  network,
-  isSupported,
-  targetNetwork,
-  isLoading,
-}) => {
+const WalletBar = () => {
+  const { account, isLoading, isSupported, chainId, target } = useMainHook()
   const { requireInstall } = useSelector((state) => state.web3Api)
   return (
     <section className="text-white bg-indigo-600 mb-4 rounded-md drop-shadow-md">
       <div className="p-8">
-        <h1 className="text-2xl">Hello, {address}</h1>
+        <h1 className="text-2xl">Hello, {account}</h1>
         <h2 className="subtitle mb-5 text-xl">
           I hope you are having a great day!
         </h2>
@@ -32,7 +28,7 @@ const WalletBar = ({
               <div className="bg-red-400 p-4 rounded-lg">
                 <div>Connected to wrong network</div>
                 Connect to:
-                <strong className="text-2xl"> {targetNetwork}</strong>
+                <strong className="text-2xl"> {target}</strong>
               </div>
             )}
             {requireInstall && (
@@ -42,7 +38,7 @@ const WalletBar = ({
             )}
             <div>
               <span>Currently on </span>
-              <strong className="text-2xl">{network || "xxxxxx"}</strong>
+              <strong className="text-2xl">{chainId || "xxxxxx"}</strong>
             </div>
           </div>
         </div>

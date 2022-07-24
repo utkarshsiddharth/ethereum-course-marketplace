@@ -1,9 +1,13 @@
+import { useEthPrice } from "@components/hooks"
 import Image from "next/image"
 import React from "react"
 
-const EthRates = ({ eth, priceItem }) => {
+const EthRates = () => {
+  const {
+    eth: { data: price, priceItem },
+  } = useEthPrice()
   return (
-    <div className="grid grid-cols-4 mb-5">
+    <div className="grid grid-cols-4">
       <div className="flex flex-1 items-stretch text-center">
         <div className="p-10 border drop-shadow rounded-md">
           <div className="flex items-center">
@@ -13,7 +17,7 @@ const EthRates = ({ eth, priceItem }) => {
               width={35}
               src="/images/small-eth.webp"
             />
-            <span className="text-2xl font-bold"> = {eth}$</span>
+            <span className="text-2xl font-bold"> = {price}$</span>
           </div>
           <p className="text-xl text-gray-500">Current eth Price</p>
         </div>

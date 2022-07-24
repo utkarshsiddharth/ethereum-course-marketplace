@@ -1,5 +1,5 @@
 import React from "react"
-import Link from "next/link"
+import { ActiveLink } from "@components/UI/common"
 import { useSelector, useDispatch } from "react-redux"
 import { connectMetamask } from "store/web3Actions"
 import { useAccount } from "@components/hooks"
@@ -26,28 +26,28 @@ const Navbar = () => {
         <nav className="relative" aria-label="Global">
           <div className="flex justify-between">
             <div>
-              <Link href="/">
+              <ActiveLink href="/">
                 <a className="font-medium mr-8 text-gray-500 hover:text-gray-900">
                   Home
                 </a>
-              </Link>
-              <Link href="/marketplace">
+              </ActiveLink>
+              <ActiveLink href="/marketplace">
                 <a className="font-medium mr-8 text-gray-500 hover:text-gray-900">
                   Marketplace
                 </a>
-              </Link>
-              <Link href="/">
+              </ActiveLink>
+              <ActiveLink href="/">
                 <a className="font-medium mr-8 text-gray-500 hover:text-gray-900">
                   Blog
                 </a>
-              </Link>
+              </ActiveLink>
             </div>
             <div>
-              <Link href="/">
+              <ActiveLink href="/">
                 <a className="font-medium mr-8 text-gray-500 hover:text-gray-900">
                   Company
                 </a>
-              </Link>
+              </ActiveLink>
 
               {isLoading && (
                 <button
