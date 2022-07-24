@@ -1,4 +1,5 @@
 import React from "react"
+import { useSelector } from "react-redux"
 const WalletBar = ({
   address,
   network,
@@ -6,6 +7,7 @@ const WalletBar = ({
   targetNetwork,
   isLoading,
 }) => {
+  const { requireInstall } = useSelector((state) => state.web3Api)
   return (
     <section className="text-white bg-indigo-600 mb-4 rounded-md drop-shadow-md">
       <div className="p-8">
@@ -33,9 +35,14 @@ const WalletBar = ({
                 <strong className="text-2xl"> {targetNetwork}</strong>
               </div>
             )}
+            {requireInstall && (
+              <div className="px-4 py-2 bg-amber-500 rounded-sm shadow-sm">
+                <h6>Cannot connect to network, please install MetaMask</h6>
+              </div>
+            )}
             <div>
               <span>Currently on </span>
-              <strong className="text-2xl">{network}</strong>
+              <strong className="text-2xl">{network || "xxxxxx"}</strong>
             </div>
           </div>
         </div>

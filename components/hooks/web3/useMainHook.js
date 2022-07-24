@@ -10,6 +10,7 @@ const useMainHook = () => {
   const { network } = useNetwork(web3, provider)
   return {
     account,
+    canPurchase: !!(account && network.isSupported),
     ...network,
   }
 }

@@ -13,13 +13,13 @@ export const LoadProvider = (data, id) => async (dispatch, state) => {
         web3,
         contract: null,
         isLoading: false,
-        isWeb3Loaded: web3 !== null,
       }
     } else {
       console.error("Please, install Metamask.")
       return {
         ...state,
         isLoading: false,
+        requireInstall: true,
       }
     }
   }
@@ -32,7 +32,7 @@ export const LoadProvider = (data, id) => async (dispatch, state) => {
 
 export const connectMetamask = () => async (dispatch, getState) => {
   const {
-    web3Api: { provider, web3 },
+    web3Api: { provider, web3, isLoading },
   } = getState()
 
   if (!provider) {
@@ -43,13 +43,9 @@ export const connectMetamask = () => async (dispatch, getState) => {
 
   if (provider) {
     try {
-      const account = await provider.request({ method: "eth_requestAccounts" })
+      await provider.request({ method: "eth_requestAccounts" })
       dispatch({
         type: CONNECT_METAMASK,
-        payload: {
-          account,
-          isWeb3Loaded: web3 != null,
-        },
       })
       // window.location.reload()
     } catch (err) {

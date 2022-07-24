@@ -5,8 +5,7 @@ const initialState = {
   web3: null,
   contract: null,
   isLoading: true,
-  acccount: null,
-  isWeb3Loaded: false,
+  requireInstall: false,
 }
 
 export const web3Reducer = (state = initialState, action) => {
@@ -21,7 +20,6 @@ export const web3Reducer = (state = initialState, action) => {
     case CONNECT_METAMASK:
       return {
         ...state,
-        ...payload,
         isLoading: false,
       }
 

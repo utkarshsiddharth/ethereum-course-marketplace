@@ -6,11 +6,9 @@ import { useAccount } from "@components/hooks"
 import { useRouter } from "next/router"
 
 const Navbar = () => {
-  const { isWeb3Loaded, isLoading, getHooks, web3, provider } = useSelector(
-    (state) => {
-      return state.web3Api
-    }
-  )
+  const { requireInstall, isLoading, web3, provider } = useSelector((state) => {
+    return state.web3Api
+  })
   const { pathname } = useRouter()
   const {
     accountData: { data: account, isAdmin },
@@ -51,7 +49,7 @@ const Navbar = () => {
                 </a>
               </Link>
 
-              {isLoading ? (
+              {isLoading && (
                 <button
                   onClick={connect}
                   disabled
@@ -61,27 +59,8 @@ const Navbar = () => {
                 >
                   loading
                 </button>
-              ) : isWeb3Loaded ? (
-                account ? (
-                  <button
-                    disabled
-                    className={`disabled:opacity-90 disabled:cursor-not-allowed font-medium mr-8 
-                    rounded-md shadow-md cursor-pointer py-2 
-                    px-4 hover:text-gray-200 bg-indigo-700 text-gray-100  hover:bg-indigo-800`}
-                  >
-                    Hi there! {isAdmin && " Admin"}
-                  </button>
-                ) : (
-                  <button
-                    onClick={connect}
-                    className={`disabled:opacity-50 disabled:cursor-not-allowed font-medium mr-8 
-                        rounded-md shadow-md cursor-pointer py-2 
-                        px-4 hover:text-gray-200 bg-indigo-700 text-gray-100  hover:bg-indigo-800`}
-                  >
-                    Connect
-                  </button>
-                )
-              ) : (
+              )}
+              {requireInstall && (
                 <button
                   onClick={() => {
                     window.open("https://metamask.io/download", "_blank")
@@ -91,6 +70,27 @@ const Navbar = () => {
                 px-4 hover:text-gray-200 bg-indigo-700 text-gray-100  hover:bg-indigo-800`}
                 >
                   Install MetaMask
+                </button>
+              )}
+              {!account && !requireInstall && (
+                <button
+                  onClick={connect}
+                  className={`disabled:opacity-50 disabled:cursor-not-allowed font-medium mr-8 
+                          rounded-md shadow-md cursor-pointer py-2 
+                          px-4 hover:text-gray-200 bg-indigo-700 text-gray-100  hover:bg-indigo-800`}
+                >
+                  Connect
+                </button>
+              )}
+              {account && !requireInstall && (
+                <button
+                  disabled
+                  onClick={connect}
+                  className={`disabled:opacity-75 disabled:cursor-not-allowed font-medium mr-8 
+                          rounded-md shadow-md cursor-pointer py-2 
+                          px-4 hover:text-gray-200 bg-indigo-700 text-gray-100  hover:bg-indigo-800`}
+                >
+                  Hi there {isAdmin && "Admin"}
                 </button>
               )}
             </div>
