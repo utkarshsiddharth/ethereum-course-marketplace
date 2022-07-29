@@ -1,3 +1,4 @@
+import { Button } from "@components/UI/common"
 import { OwnedCourseCard } from "@components/UI/common/Course"
 import { BaseLayout } from "@components/UI/Layout"
 import { MarketPlaceHeader } from "@components/UI/marketplace"
@@ -8,7 +9,9 @@ const OwnedCourses = () => {
     <BaseLayout>
       <MarketPlaceHeader />
       <section className="grid grid-cols-1">
-        <OwnedCourseCard />
+        <OwnedCourseCard>
+          <Button>Watch the course</Button>
+        </OwnedCourseCard>
       </section>
     </BaseLayout>
   )

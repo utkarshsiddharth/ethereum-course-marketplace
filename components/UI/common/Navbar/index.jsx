@@ -9,6 +9,7 @@ const Navbar = () => {
   const { requireInstall, isLoading, web3, provider } = useSelector((state) => {
     return state.web3Api
   })
+
   const { pathname } = useRouter()
   const {
     accountData: { data: account, isAdmin },
@@ -82,7 +83,7 @@ const Navbar = () => {
                   Connect
                 </button>
               )}
-              {account && !requireInstall && (
+              {account && !requireInstall && !!isAdmin && (
                 <button
                   disabled
                   onClick={connect}

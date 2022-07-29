@@ -1,0 +1,270 @@
+{
+  "contractName": "CourseMarketplace",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.14+commit.80d49f37\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/CourseMarketplace.sol\":\"CourseMarketplace\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/CourseMarketplace.sol\":{\"keccak256\":\"0x2a88477e1438fcc4e1067c4f5d7f04cadafefe498c8c4eee30bb0ace969f2775\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://081d94379bfea566684f547831ca0908eb23d6d1490a12f1a16ae9e4c1117123\",\"dweb:/ipfs/QmRRHnf6X5UDTHx2r3wgCWKL5kjPKKoB2KE7ckdx5as6iX\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220a39cddfe08188ebd2aa5d889c5053b48145fc5ebca3e626c6d4e3bccdbcc8cd564736f6c634300080e0033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220a39cddfe08188ebd2aa5d889c5053b48145fc5ebca3e626c6d4e3bccdbcc8cd564736f6c634300080e0033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "61:291:0:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "61:291:0:-:0;;;;;",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.14;\r\n\r\ncontract CourseMarketplace {\r\n    enum State {\r\n        Purchased,\r\n        Activated,\r\n        Deactivated\r\n    }\r\n\r\n    struct Course {\r\n        uint256 id; // 32\r\n        uint256 price; // 32\r\n        bytes32 proof; // 32\r\n        address owner; // 20\r\n        State state; // 1\r\n    }\r\n}\r\n",
+  "sourcePath": "C:\\web development\\My Projects\\Blockchain\\blockhain-solidity-web3-react\\marketplace-eth\\contracts\\CourseMarketplace.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/CourseMarketplace.sol",
+    "exportedSymbols": {
+      "CourseMarketplace": [
+        18
+      ]
+    },
+    "id": 19,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".14"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:24:0"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "CourseMarketplace",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 18,
+        "linearizedBaseContracts": [
+          18
+        ],
+        "name": "CourseMarketplace",
+        "nameLocation": "70:17:0",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "CourseMarketplace.State",
+            "id": 5,
+            "members": [
+              {
+                "id": 2,
+                "name": "Purchased",
+                "nameLocation": "117:9:0",
+                "nodeType": "EnumValue",
+                "src": "117:9:0"
+              },
+              {
+                "id": 3,
+                "name": "Activated",
+                "nameLocation": "137:9:0",
+                "nodeType": "EnumValue",
+                "src": "137:9:0"
+              },
+              {
+                "id": 4,
+                "name": "Deactivated",
+                "nameLocation": "157:11:0",
+                "nodeType": "EnumValue",
+                "src": "157:11:0"
+              }
+            ],
+            "name": "State",
+            "nameLocation": "100:5:0",
+            "nodeType": "EnumDefinition",
+            "src": "95:80:0"
+          },
+          {
+            "canonicalName": "CourseMarketplace.Course",
+            "id": 17,
+            "members": [
+              {
+                "constant": false,
+                "id": 7,
+                "mutability": "mutable",
+                "name": "id",
+                "nameLocation": "216:2:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 17,
+                "src": "208:10:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 6,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "208:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 9,
+                "mutability": "mutable",
+                "name": "price",
+                "nameLocation": "243:5:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 17,
+                "src": "235:13:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 8,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "235:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11,
+                "mutability": "mutable",
+                "name": "proof",
+                "nameLocation": "273:5:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 17,
+                "src": "265:13:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 10,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "265:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 13,
+                "mutability": "mutable",
+                "name": "owner",
+                "nameLocation": "303:5:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 17,
+                "src": "295:13:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 12,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "295:7:0",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 16,
+                "mutability": "mutable",
+                "name": "state",
+                "nameLocation": "331:5:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 17,
+                "src": "325:11:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_enum$_State_$5",
+                  "typeString": "enum CourseMarketplace.State"
+                },
+                "typeName": {
+                  "id": 15,
+                  "nodeType": "UserDefinedTypeName",
+                  "pathNode": {
+                    "id": 14,
+                    "name": "State",
+                    "nodeType": "IdentifierPath",
+                    "referencedDeclaration": 5,
+                    "src": "325:5:0"
+                  },
+                  "referencedDeclaration": 5,
+                  "src": "325:5:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_State_$5",
+                    "typeString": "enum CourseMarketplace.State"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Course",
+            "nameLocation": "190:6:0",
+            "nodeType": "StructDefinition",
+            "scope": 18,
+            "src": "183:166:0",
+            "visibility": "public"
+          }
+        ],
+        "scope": 19,
+        "src": "61:291:0",
+        "usedErrors": []
+      }
+    ],
+    "src": "33:321:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.14+commit.80d49f37.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0xBA015Fb8c07e663da0C8b5A1ae632291f93E8e27",
+      "transactionHash": "0x7c28a3f550c067434c815564fef107878fbb5119f8876c509bbbaeb570c72a02"
+    }
+  },
+  "schemaVersion": "3.4.7",
+  "updatedAt": "2022-07-29T17:19:36.154Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
