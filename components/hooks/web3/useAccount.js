@@ -8,7 +8,10 @@ const useAccount = (web3, provider) => {
   const { data, mutate, ...rest } = useSWR(web3 && "web3/accounts", getAccounts)
   async function getAccounts() {
     const accounts = await web3.eth.getAccounts()
-    return web3.utils.keccak256(accounts[0])
+    return {
+      encodedAccount: web3.utils.keccak256(accounts[0]),
+      account: accounts[0],
+    }
   }
   useEffect(() => {
     provider &&
@@ -16,7 +19,8 @@ const useAccount = (web3, provider) => {
   }, [provider])
   return {
     accountData: {
-      data,
+      encodedAccount: data?.encodedAccount || null,
+      account: data?.account || null,
       isAdmin: (data && adminAccounts[data]) ?? false,
       ...rest,
     },

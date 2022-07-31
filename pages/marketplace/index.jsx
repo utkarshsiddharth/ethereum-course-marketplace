@@ -9,7 +9,46 @@ import { MarketPlaceHeader } from "@components/UI/marketplace"
 
 export default function Marketplace({ courses }) {
   const [selectedCourse, setSelectedCourse] = useState(null)
-  const { canPurchase } = useMainHook()
+  const { canPurchase, account, web3, contract } = useMainHook()
+
+  const purchaseCourse = async (order) => {
+    const hexCourseId = web3.utils.utf8ToHex(selectedCourse.id)
+
+    const orderHash = web3.utils.soliditySha3(
+      {
+        type: "bytes16",
+        value: hexCourseId,
+      },
+      {
+        type: "address",
+        value: account,
+      }
+    )
+
+    const emailHash = web3.utils.sha3(order.email)
+    const proof = web3.utils.soliditySha3(
+      {
+        type: "bytes32",
+        value: emailHash,
+      },
+      {
+        type: "bytes32",
+        value: orderHash,
+      }
+    )
+
+    const value = web3.utils.toWei(String(order.price))
+
+    try {
+      await contract.methods.purchaseCourse(hexCourseId, proof).send({
+        from: account,
+        value,
+      })
+      console.log("purchased :)")
+    } catch (err) {
+      console.error({ err })
+    }
+  }
 
   return (
     <>
@@ -40,6 +79,7 @@ export default function Marketplace({ courses }) {
         <OrderModal
           course={selectedCourse}
           onClose={() => setSelectedCourse(null)}
+          purchaseCourse={purchaseCourse}
         />
       )}
     </>

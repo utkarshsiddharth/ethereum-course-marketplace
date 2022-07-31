@@ -2,16 +2,19 @@ import detectEthereumProvider from "@metamask/detect-provider"
 import Web3 from "web3"
 import { useMemo } from "react"
 import { CONNECT_METAMASK, SET_PROVIDER } from "./types"
+import { loadContract } from "@utils/loadContract"
 
 export const LoadProvider = (data, id) => async (dispatch, state) => {
   const loadProvider = async () => {
     const provider = await detectEthereumProvider()
     if (provider) {
       const web3 = new Web3(provider)
+      const contract = await loadContract("CourseMarketplace", web3)
+      console.log(contract)
       return {
         provider,
         web3,
-        contract: null,
+        contract: contract,
         isLoading: false,
       }
     } else {

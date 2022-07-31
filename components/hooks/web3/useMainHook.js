@@ -3,15 +3,19 @@ import { useSelector } from "react-redux"
 import useAccount from "./useAccount"
 import useNetwork from "./useNetwork"
 const useMainHook = () => {
-  const { web3, provider } = useSelector((state) => state.web3Api)
+  const { web3, provider, contract } = useSelector((state) => state.web3Api)
   const {
-    accountData: { data: account },
+    accountData: { encodedAccount, account },
   } = useAccount(web3, provider)
   const { network } = useNetwork(web3, provider)
   return {
     account,
+    encodedAccount,
     canPurchase: !!(account && network.isSupported),
     ...network,
+    web3,
+    provider,
+    contract,
   }
 }
 

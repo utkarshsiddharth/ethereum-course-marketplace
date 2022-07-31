@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Button, Modal } from "@components/UI/common"
 import { useEthPrice } from "@components/hooks"
 
-const OrderModal = ({ course, onClose }) => {
+const OrderModal = ({ course, onClose, purchaseCourse }) => {
   const [enablePrice, setEnablePrice] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const {
@@ -35,7 +35,7 @@ const OrderModal = ({ course, onClose }) => {
       setIsOpen(false)
       setOrder(defaultOrder)
       onClose()
-      alert(JSON.stringify(order))
+      purchaseCourse(order)
     }
   }
 
