@@ -4,6 +4,9 @@ const nextConfig = {
   images: {
     domains: ["thrangra.sirv.com"],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 }
 
 module.exports = nextConfig
